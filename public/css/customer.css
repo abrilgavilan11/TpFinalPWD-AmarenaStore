@@ -1,0 +1,785 @@
+/* ====================================
+   CUSTOMER DASHBOARD STYLES
+   Replica la estructura del admin panel pero con colores Amarena
+   ==================================== */
+
+/* Variables CSS para Customer Dashboard */
+:root {
+    --customer-primary: #c55a8a;
+    --customer-primary-dark: #a64771;
+    --customer-primary-light: #e0a4c4;
+    --customer-secondary: #ff6b35;
+    --customer-accent: #f8f9fa;
+    --customer-text: #2c3e50;
+    --customer-text-muted: #6c757d;
+    --customer-border: #e9ecef;
+    --customer-success: #28a745;
+    --customer-warning: #ffc107;
+    --customer-danger: #dc3545;
+    --customer-info: #17a2b8;
+    --customer-white: #ffffff;
+    --customer-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --customer-shadow-lg: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Reset y base para customer dashboard */
+.customer-dashboard * {
+    box-sizing: border-box;
+}
+
+/* Layout principal del customer dashboard (replica admin-page) */
+.customer-dashboard {
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(135deg, #fef4f8 0%, #f8e8f0 100%);
+    min-height: 80vh;
+}
+
+.customer-layout {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(197, 90, 138, 0.15);
+    overflow: hidden;
+}
+
+/* SIDEBAR CUSTOMER (replica del admin) */
+.customer-sidebar {
+    flex: 0 0 240px;
+    background: linear-gradient(135deg, var(--customer-primary-dark), var(--customer-primary));
+    color: #ecf0f1;
+    padding: 1.5rem;
+    box-shadow: 2px 0 10px rgba(197, 90, 138, 0.1);
+}
+
+.customer-sidebar h2 {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--customer-white);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 1rem;
+}
+
+.customer-sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Header del sidebar customer */
+.customer-sidebar-header {
+    padding: 0 2rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.customer-sidebar-header h3 {
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: var(--customer-white);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 1rem;
+}
+
+.customer-user-info {
+    background: rgba(255,255,255,0.15);
+    padding: 1rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.customer-user-info .user-avatar {
+    width: 60px;
+    height: 60px;
+    background: var(--customer-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem auto;
+    font-size: 1.5rem;
+    color: var(--customer-white);
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.customer-user-info .user-name {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+}
+
+.customer-user-info .user-email {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Menú de navegación customer (idéntico al admin-sidebar nav) */
+.customer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.customer-nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    border-left: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.customer-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--customer-white);
+    border-left-color: #f8f9fa;
+    transform: translateX(5px);
+}
+
+.customer-nav a.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--customer-white);
+    font-weight: bold;
+    border-left-color: #f8f9fa;
+}
+
+.customer-nav i {
+    width: 20px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* Contenido principal customer (replica admin-content) */
+.customer-content {
+    flex: 1;
+    padding: 2rem;
+}
+
+/* Header de páginas customer */
+.customer-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--customer-border);
+}
+
+.customer-page-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.customer-page-title .icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--customer-white);
+    font-size: 1.5rem;
+    box-shadow: var(--customer-shadow);
+}
+
+.customer-page-title h1 {
+    font-family: var(--font-primary);
+    margin-top: 0;
+    color: var(--customer-primary-dark);
+    border-bottom: 3px solid var(--customer-border);
+    padding-bottom: 1rem;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.customer-page-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0.5rem 0 0 0;
+}
+
+/* Cards de estadísticas customer */
+.customer-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.customer-stat-card {
+    background: var(--customer-white);
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--customer-shadow);
+    border-left: 4px solid var(--customer-primary);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--customer-primary-light), transparent);
+    border-radius: 0 0 0 100px;
+    opacity: 0.1;
+}
+
+.customer-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--customer-shadow-lg);
+}
+
+.customer-stat-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.customer-stat-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--customer-white);
+    font-size: 1.3rem;
+    margin-right: 1rem;
+    box-shadow: var(--customer-shadow);
+}
+
+.customer-stat-info h3 {
+    margin: 0;
+    color: var(--customer-text);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.customer-stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--customer-primary);
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.customer-stat-label {
+    color: var(--customer-text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sección de contenido customer */
+.customer-section {
+    background: var(--customer-white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--customer-shadow);
+    margin-bottom: 2rem;
+}
+
+.customer-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--customer-border);
+}
+
+.customer-section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+    color: var(--customer-text);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.customer-section-title i {
+    color: var(--customer-primary);
+}
+
+/* Botones customer */
+.customer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.customer-btn:hover::before {
+    left: 100%;
+}
+
+.customer-btn-primary {
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-primary-dark));
+    color: var(--customer-white);
+    box-shadow: 0 4px 15px rgba(197, 90, 138, 0.3);
+    border-radius: 8px;
+    font-weight: 800;
+}
+
+.customer-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(197, 90, 138, 0.4);
+    color: var(--customer-white);
+    text-decoration: none;
+}
+
+.customer-btn-secondary {
+    background: var(--customer-accent);
+    color: var(--customer-white);
+    box-shadow: 0 4px 15px rgba(197, 90, 138, 0.3);
+    border-radius: 8px;
+    font-weight: 800;
+}
+
+.customer-btn-secondary:hover {
+    background-color: var(--customer-white);
+    border: 2px solid var(--customer-primary);
+    color: var(--customer-primary-dark);
+    text-decoration: none;
+}
+
+.customer-btn-outline {
+    background: transparent;
+    color: var(--customer-primary);
+    border: 2px solid var(--customer-primary);
+}
+
+.customer-btn-outline:hover {
+    background: var(--customer-primary);
+    color: var(--customer-white);
+    text-decoration: none;
+}
+
+/* Acciones rápidas */
+.customer-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.customer-quick-action {
+    background: var(--customer-white);
+    border: 2px solid var(--customer-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--customer-text);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.customer-quick-action::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--customer-primary-light), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.customer-quick-action:hover::before {
+    opacity: 0.1;
+}
+
+.customer-quick-action:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--customer-shadow-lg);
+    border-color: var(--customer-primary);
+    color: var(--customer-text);
+    text-decoration: none;
+}
+
+.customer-quick-action i {
+    font-size: 2rem;
+    color: var(--customer-primary);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.customer-quick-action h4 {
+    margin: 0;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilos adicionales para replicar admin exactamente */
+.customer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Dashboard Stats - replica exacta del admin */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--customer-white), #f8f9fa);
+    border: 2px solid var(--customer-border);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(197, 90, 138, 0.1);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(197, 90, 138, 0.2);
+    border-color: var(--customer-primary);
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-primary-dark));
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--customer-primary-dark);
+    font-family: var(--font-primary);
+    margin: 0 0 0.25rem 0;
+}
+
+.stat-label {
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Dashboard Stats (como en admin) */
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(197, 90, 138, 0.1);
+    border-left: 4px solid var(--customer-primary);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(197, 90, 138, 0.2);
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: white;
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-primary-dark));
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--customer-primary);
+    font-family: var(--font-primary);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #666;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Quick Actions (como en admin) */
+.quick-actions {
+    margin: 2rem 0;
+}
+
+.quick-actions h3 {
+    color: var(--customer-primary-dark);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border: 2px solid var(--customer-border);
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--customer-text);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    border-color: var(--customer-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(197, 90, 138, 0.15);
+    color: var(--customer-primary);
+    text-decoration: none;
+}
+
+.action-btn i {
+    font-size: 2rem;
+    color: var(--customer-primary);
+}
+
+/* Clases de utilidad como en admin */
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.me-1 {
+    margin-right: 0.5rem;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--customer-primary);
+}
+
+.breadcrumb-item.active {
+    color: var(--customer-primary-dark);
+    font-weight: 800;
+}
+
+.breadcrumb-item a {
+    color: var(--customer-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: var(--customer-secondary);
+}
+
+/* Cards */
+.card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(197, 90, 138, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-primary-dark));
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    font-weight: 800;
+}
+
+.card-body {
+    padding: 1.5rem;
+    background-color: #fafafa;
+}
+
+.card-footer {
+    background-color: white;
+    border-top: 2px solid var(--customer-border);
+}
+
+/* Quick Actions - replica exacta del admin */
+.quick-actions {
+    margin: 2rem 0;
+}
+
+.quick-actions h3 {
+    color: var(--customer-primary-dark);
+    font-family: var(--font-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 2px solid var(--customer-border);
+    border-radius: 15px;
+    text-decoration: none;
+    color: #666;
+    transition: all 0.3s ease;
+    background: var(--customer-white);
+    text-align: center;
+}
+
+.action-btn:hover {
+    border-color: var(--customer-primary);
+    transform: translateY(-5px);
+    color: var(--customer-primary-dark);
+    box-shadow: 0 10px 25px rgba(197, 90, 138, 0.2);
+    text-decoration: none;
+}
+
+.action-btn i {
+    font-size: 2rem;
+    color: var(--customer-primary);
+}
+
+.action-btn span {
+    font-weight: 600;
+}
+
+/* Iconos específicos con colores */
+.orders-icon {
+    background: linear-gradient(135deg, var(--customer-primary), var(--customer-primary-dark)) !important;
+}
+
+.products-icon {
+    background: linear-gradient(135deg, #27ae60, #229954) !important;
+}
+
+.pending-icon {
+    background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .customer-layout {
+        flex-direction: column;
+    }
+    
+    .customer-sidebar {
+        flex: 0 0 auto;
+    }
+    
+    .customer-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .customer-page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,534 @@
+/*
+ * Estilos específicos para la gestión de categorías en Amarena Store
+ * Complementa los estilos base del panel de administración
+ */
+
+/* Estilos específicos para la tabla de categorías */
+.admin-content .table thead.thead-custom th {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
+  color: var(--color-white);
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Estado de las categorías */
+.badge.bg-success {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  color: white;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14) !important;
+  color: #212529 !important;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.badge.bg-info {
+  background: linear-gradient(135deg, #17a2b8, #6f42c1) !important;
+  color: white;
+  border: none;
+}
+
+/* Botones de acción específicos para categorías */
+.btn-sm.btn-info {
+  background: linear-gradient(135deg, #17a2b8, #007bff);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-sm.btn-info:hover {
+  background: linear-gradient(135deg, #138496, #0056b3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-sm.btn-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-sm.btn-danger:hover {
+  background: linear-gradient(135deg, #c82333, #a71e2a);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.btn-sm.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  border: none;
+  color: white;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Animación para las filas de la tabla */
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(217, 106, 126, 0.05);
+  transform: translateX(2px);
+}
+
+/* Card header específico para categorías */
+.card-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-light),
+    rgba(217, 106, 126, 0.1)
+  );
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+.card-header .btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  border: none;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.card-header .btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), #a8385d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(217, 106, 126, 0.4);
+}
+
+/* Breadcrumb styling específico */
+.breadcrumb {
+  background: rgba(217, 106, 126, 0.1);
+  border: 1px solid rgba(217, 106, 126, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.breadcrumb-item a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* Mensaje cuando no hay categorías */
+.table tbody tr td.text-center {
+  color: #6c757d;
+  font-style: italic;
+  padding: 3rem 1rem;
+  background: rgba(217, 106, 126, 0.05);
+}
+
+/* Tooltips mejorados para botones deshabilitados */
+.btn[disabled][title] {
+  position: relative;
+}
+
+.btn[disabled]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 5px;
+}
+
+/* Responsive design para categorías */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .table-responsive {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Animación de carga para la tabla */
+.table tbody {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contador de productos en badge */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* Mejoras visuales para iconos */
+.fas {
+  margin-right: 0.25rem;
+}
+
+.card-header .fas {
+  color: var(--color-primary-dark);
+}
+
+/* Efecto hover en las celdas con badges */
+.table tbody tr:hover .badge {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Estilos específicos para la tabla de categorías */
+.categories-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.categories-table thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.categories-table thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* Columna de ID más estrecha */
+.categories-table td:first-child,
+.categories-table th:first-child {
+  width: 60px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Columna de acciones */
+.categories-table td:last-child,
+.categories-table th:last-child {
+  width: 120px;
+  text-align: center;
+}
+
+/* Separación entre botones de acción */
+.categories-table .btn-sm {
+  margin: 0 2px;
+}
+
+/* Formularios inline para botones de eliminar */
+.categories-table form {
+  display: inline-block !important;
+  margin: 0;
+}
+
+/* Botón de eliminar específico con ícono de basura */
+.btn-sm.btn-danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+  border: none !important;
+  color: white !important;
+  transition: all 0.3s ease;
+  min-width: 32px;
+  height: 32px;
+}
+
+.btn-sm.btn-danger:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4) !important;
+}
+
+.btn-sm.btn-danger:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* Ícono de basura */
+.btn-sm.btn-danger .fa-trash-alt {
+  font-size: 0.9rem;
+}
+
+/* Mejorar el botón de editar también */
+.btn-sm.btn-info {
+  min-width: 32px;
+  height: 32px;
+}
+
+/* Botones de estado activo/inactivo */
+.toggle-status-btn {
+  min-width: 100px !important;
+  height: 32px;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-status-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-status-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.toggle-status-btn.btn-success {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  border: none !important;
+}
+
+.toggle-status-btn.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #495057) !important;
+  border: none !important;
+}
+
+/* Mejora del estilo de la descripción */
+.categories-table td:nth-child(3) {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Hover effect mejorado para toda la fila */
+.categories-table tbody tr:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(217, 106, 126, 0.08),
+    rgba(217, 106, 126, 0.03)
+  );
+  cursor: default;
+}
+
+/* ==================== ESTILOS PARA FORMULARIO DE CATEGORÍAS ==================== */
+
+/* Card del formulario */
+.category-form-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(217, 106, 126, 0.15);
+}
+
+.category-form-card .card-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  padding: 1.5rem 2rem;
+  border-bottom: none;
+}
+
+.category-form-card .card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.category-form-card .card-body {
+  padding: 2rem;
+}
+
+/* Estilos del formulario */
+.category-form .form-label {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+}
+
+.category-form .form-label.required::after {
+  content: ' *';
+  color: #dc3545;
+}
+
+.category-form .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.category-form .form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(217, 106, 126, 0.25);
+  outline: none;
+}
+
+.category-form .form-control-lg {
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Estilos para textarea */
+.category-form textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Texto de ayuda */
+.category-form .form-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.category-form .form-text i {
+  color: var(--color-primary);
+}
+
+/* Botones del formulario */
+.category-form .btn {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.category-form .btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+}
+
+.category-form .btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), #a8385d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(217, 106, 126, 0.4);
+}
+
+.category-form .btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.category-form .btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+/* Alert mejorado */
+.category-form .alert {
+  border: none;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+.category-form .alert-info {
+  background: linear-gradient(
+    135deg,
+    rgba(23, 162, 184, 0.1),
+    rgba(111, 66, 193, 0.1)
+  );
+  border-left: 4px solid #17a2b8;
+}
+
+.category-form .alert-danger {
+  background: linear-gradient(
+    135deg,
+    rgba(220, 53, 69, 0.1),
+    rgba(200, 35, 51, 0.1)
+  );
+  border-left: 4px solid #dc3545;
+}
+
+/* Separador */
+.category-form hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(135deg, var(--color-primary-light), transparent);
+  margin: 2rem 0;
+}
+
+/* Gap para botones */
+.gap-2 {
+  gap: 0.5rem;
+}
+
+/* Animaciones */
+.category-form-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive para formulario */
+@media (max-width: 768px) {
+  .category-form-card .card-body {
+    padding: 1.5rem 1rem;
+  }
+
+  .category-form .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-form .d-flex {
+    flex-direction: column-reverse;
+  }
+}

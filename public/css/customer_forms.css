@@ -1,0 +1,536 @@
+/* ====================================
+   CUSTOMER FORMS STYLES
+   Estilos específicos para formularios del dashboard del cliente
+   ==================================== */
+
+/* Variables específicas para formularios */
+:root {
+    --form-primary: #c55a8a;
+    --form-secondary: #ff6b35;
+    --form-success: #28a745;
+    --form-danger: #dc3545;
+    --form-warning: #ffc107;
+    --form-info: #17a2b8;
+    --form-light: #f8f9fa;
+    --form-dark: #343a40;
+    --form-border: #e9ecef;
+    --form-focus: #80bdff;
+}
+
+/* Contenedor de formulario customer */
+.customer-form-container {
+    background: var(--customer-white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--customer-shadow);
+    margin-bottom: 2rem;
+}
+
+.customer-form-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--customer-border);
+}
+
+.customer-form-header .icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    box-shadow: var(--customer-shadow);
+}
+
+.customer-form-header h2 {
+    margin: 0;
+    color: var(--customer-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Grupos de formulario */
+.customer-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.customer-form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Labels */
+.customer-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--customer-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.customer-form-label.required::after {
+    content: ' *';
+    color: var(--form-danger);
+}
+
+/* Inputs */
+.customer-form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--form-border);
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.customer-form-control:focus {
+    outline: none;
+    border-color: var(--form-primary);
+    box-shadow: 0 0 0 0.2rem rgba(197, 90, 138, 0.25);
+    transform: translateY(-1px);
+}
+
+.customer-form-control:invalid {
+    border-color: var(--form-danger);
+}
+
+.customer-form-control:valid {
+    border-color: var(--form-success);
+}
+
+/* Select inputs */
+.customer-form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--form-border);
+    border-radius: 10px;
+    font-size: 1rem;
+    background: white url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") no-repeat right 0.75rem center/1.5em 1.5em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.customer-form-select:focus {
+    outline: none;
+    border-color: var(--form-primary);
+    box-shadow: 0 0 0 0.2rem rgba(197, 90, 138, 0.25);
+}
+
+/* Textarea */
+.customer-form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--form-border);
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 120px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.customer-form-textarea:focus {
+    outline: none;
+    border-color: var(--form-primary);
+    box-shadow: 0 0 0 0.2rem rgba(197, 90, 138, 0.25);
+}
+
+/* Checkbox y Radio */
+.customer-form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.customer-form-check-input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    accent-color: var(--form-primary);
+}
+
+.customer-form-check-label {
+    margin-bottom: 0;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+/* Mensajes de ayuda */
+.customer-form-text {
+    font-size: 0.875rem;
+    color: var(--customer-text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Mensajes de validación */
+.customer-form-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.customer-form-feedback.valid {
+    color: var(--form-success);
+}
+
+.customer-form-feedback.invalid {
+    color: var(--form-danger);
+}
+
+.customer-form-feedback i {
+    font-size: 1rem;
+}
+
+/* Estados de input */
+.customer-form-control.is-valid {
+    border-color: var(--form-success);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='m2.3 6.73.94-.94 2.94-2.94.94.94-3.88 3.88z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.customer-form-control.is-invalid {
+    border-color: var(--form-danger);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.6 1.4 1.4M6.2 7.4l1.4-1.4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Botones de formulario */
+.customer-form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--form-border);
+    flex-wrap: wrap;
+}
+
+.customer-form-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.customer-form-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.customer-form-btn:hover::before {
+    left: 100%;
+}
+
+.customer-form-btn-primary {
+    background: linear-gradient(135deg, var(--form-primary), var(--form-secondary));
+    color: white;
+    box-shadow: var(--customer-shadow);
+}
+
+.customer-form-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--customer-shadow-lg);
+    color: white;
+    text-decoration: none;
+}
+
+.customer-form-btn-secondary {
+    background: var(--form-light);
+    color: var(--customer-text);
+    border: 2px solid var(--form-border);
+}
+
+.customer-form-btn-secondary:hover {
+    background: var(--customer-text);
+    color: white;
+    border-color: var(--customer-text);
+    text-decoration: none;
+}
+
+.customer-form-btn-danger {
+    background: var(--form-danger);
+    color: white;
+    box-shadow: var(--customer-shadow);
+}
+
+.customer-form-btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: var(--customer-shadow-lg);
+    color: white;
+    text-decoration: none;
+}
+
+.customer-form-btn-outline {
+    background: transparent;
+    color: var(--form-primary);
+    border: 2px solid var(--form-primary);
+}
+
+.customer-form-btn-outline:hover {
+    background: var(--form-primary);
+    color: white;
+    text-decoration: none;
+}
+
+/* Loading state */
+.customer-form-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.customer-form-btn.loading::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    margin-left: 0.5rem;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Secciones del formulario */
+.customer-form-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--form-light);
+    border-radius: 12px;
+    border-left: 4px solid var(--form-primary);
+}
+
+.customer-form-section-title {
+    margin: 0 0 1.5rem 0;
+    color: var(--customer-text);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.customer-form-section-title i {
+    color: var(--form-primary);
+}
+
+/* Alertas en formularios */
+.customer-form-alert {
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.customer-form-alert-success {
+    background-color: #d4edda;
+    border-color: var(--form-success);
+    color: #155724;
+}
+
+.customer-form-alert-danger {
+    background-color: #f8d7da;
+    border-color: var(--form-danger);
+    color: #721c24;
+}
+
+.customer-form-alert-warning {
+    background-color: #fff3cd;
+    border-color: var(--form-warning);
+    color: #856404;
+}
+
+.customer-form-alert-info {
+    background-color: #cce8f4;
+    border-color: var(--form-info);
+    color: #0c5460;
+}
+
+.customer-form-alert i {
+    font-size: 1.2rem;
+}
+
+/* Input groups */
+.customer-input-group {
+    display: flex;
+    width: 100%;
+}
+
+.customer-input-group .customer-form-control {
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+}
+
+.customer-input-group-append {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--form-light);
+    border: 2px solid var(--form-border);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    color: var(--customer-text-muted);
+}
+
+/* File upload */
+.customer-file-upload {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.customer-file-input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.customer-file-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 2px dashed var(--form-border);
+    border-radius: 12px;
+    background: var(--form-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.customer-file-label:hover {
+    border-color: var(--form-primary);
+    background: rgba(197, 90, 138, 0.05);
+}
+
+.customer-file-label i {
+    font-size: 3rem;
+    color: var(--form-primary);
+}
+
+.customer-file-label span {
+    color: var(--customer-text);
+    font-weight: 500;
+}
+
+/* Responsive forms */
+@media (max-width: 768px) {
+    .customer-form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .customer-form-actions {
+        flex-direction: column;
+    }
+    
+    .customer-form-btn {
+        width: 100%;
+    }
+    
+    .customer-input-group {
+        flex-direction: column;
+    }
+    
+    .customer-input-group .customer-form-control {
+        border-radius: 10px 10px 0 0;
+        border-right: 2px solid var(--form-border);
+        border-bottom: none;
+    }
+    
+    .customer-input-group-append {
+        border-left: 2px solid var(--form-border);
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        justify-content: center;
+    }
+}
+
+/* Password strength indicator */
+.password-strength {
+    margin-top: 0.5rem;
+}
+
+.password-strength-bar {
+    height: 4px;
+    background: var(--form-border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.password-strength-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.password-strength-fill.weak {
+    width: 25%;
+    background: var(--form-danger);
+}
+
+.password-strength-fill.fair {
+    width: 50%;
+    background: var(--form-warning);
+}
+
+.password-strength-fill.good {
+    width: 75%;
+    background: var(--form-info);
+}
+
+.password-strength-fill.strong {
+    width: 100%;
+    background: var(--form-success);
+}
+
+.password-strength-text {
+    font-size: 0.8rem;
+    color: var(--customer-text-muted);
+}

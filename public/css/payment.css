@@ -1,0 +1,99 @@
+.payment-success-page,
+.payment-failure-page,
+.payment-pending-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 20px;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-body h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.alert h5 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.alert ul {
+    list-style: none;
+    padding: 0;
+}
+
+.alert li {
+    padding: 5px 0;
+    padding-left: 20px;
+    position: relative;
+}
+
+.alert li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .card-body h2 {
+        font-size: 24px;
+    }
+
+    .card-body {
+        padding: 30px 20px !important;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .ms-2 {
+        margin-left: 0 !important;
+    }
+}

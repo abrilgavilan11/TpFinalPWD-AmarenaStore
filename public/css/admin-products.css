@@ -1,0 +1,509 @@
+/* 
+ * Estilos para Gestión de Productos - Amarena Store
+ * Siguiendo el mismo diseño que categorías con tipografía Raleway únicamente
+ */
+
+/* Configuración de fuente base */
+* {
+  font-family: 'Raleway', sans-serif !important;
+}
+
+/* ==================== ESTILOS DE LA TABLA DE PRODUCTOS ==================== */
+
+/* Encabezado de tabla matching categorías */
+.admin-content .table thead.thead-custom th {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: var(--color-white);
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.85rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Filas de la tabla */
+.table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(217, 106, 126, 0.05);
+  transform: translateX(2px);
+}
+
+/* Card header para productos */
+.card-header {
+  background: linear-gradient(
+    135deg,
+    rgba(217, 106, 126, 0.1),
+    rgba(217, 106, 126, 0.05)
+  );
+  border-bottom: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Botón principal en header */
+.card-header .btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  border: none;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+}
+
+.card-header .btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), #a8385d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(217, 106, 126, 0.4);
+}
+
+/* ==================== ESTILOS ESPECÍFICOS PARA PRODUCTOS ==================== */
+
+/* Información del producto */
+.product-name {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin: 0;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-detail {
+  font-size: 12px;
+  color: #6c757d;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Badge de categoría */
+.category-badge {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(217, 106, 126, 0.3);
+  font-family: 'Raleway', sans-serif;
+}
+
+.category-badge:hover {
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(217, 106, 126, 0.4);
+}
+
+/* Precio */
+.price-cell {
+  font-weight: 600;
+  color: #27ae60;
+  font-size: 15px;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Stock */
+.stock-cell {
+  font-weight: 600;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.stock-number {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Badges de estado de stock */
+.badge.bg-success {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+  color: white;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14) !important;
+  color: #212529 !important;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333) !important;
+  color: white;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* ==================== BOTONES DE ACCIÓN ==================== */
+
+/* Botón de editar */
+.btn-sm.btn-info {
+  background: linear-gradient(135deg, #17a2b8, #007bff);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  min-width: 32px;
+  height: 32px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.btn-sm.btn-info:hover {
+  background: linear-gradient(135deg, #138496, #0056b3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Botón de eliminar */
+.btn-sm.btn-danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+  border: none !important;
+  color: white !important;
+  transition: all 0.3s ease;
+  min-width: 32px;
+  height: 32px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.btn-sm.btn-danger:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4) !important;
+}
+
+.btn-sm.btn-danger:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* Separación entre botones */
+.btn-sm {
+  margin: 0 2px;
+}
+
+/* Formularios inline */
+form {
+  display: inline-block !important;
+  margin: 0;
+}
+
+/* ==================== BREADCRUMB ==================== */
+
+.breadcrumb {
+  background: rgba(217, 106, 126, 0.1);
+  border: 1px solid rgba(217, 106, 126, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.breadcrumb-item a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* ==================== MENSAJE VACÍO ==================== */
+
+.table tbody tr td.text-center {
+  color: #6c757d;
+  font-style: italic;
+  padding: 3rem 1rem;
+  background: rgba(217, 106, 126, 0.05);
+  font-family: 'Raleway', sans-serif;
+}
+
+/* ==================== ANIMACIONES ==================== */
+
+.table tbody {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== TABLA ESPECÍFICA DE PRODUCTOS ==================== */
+
+.products-table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Raleway', sans-serif;
+}
+
+.products-table thead th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.products-table thead th:last-child {
+  border-top-right-radius: 8px;
+}
+
+/* Columna de ID */
+.products-table td:first-child,
+.products-table th:first-child {
+  width: 60px;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Columna de acciones */
+.products-table td:last-child,
+.products-table th:last-child {
+  width: 120px;
+  text-align: center;
+}
+
+/* Hover mejorado para filas */
+.products-table tbody tr:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(217, 106, 126, 0.08),
+    rgba(217, 106, 126, 0.03)
+  );
+  cursor: default;
+}
+
+/* ==================== ESTILOS PARA FORMULARIO DE PRODUCTOS ==================== */
+
+/* Card del formulario */
+.product-form-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(217, 106, 126, 0.15);
+}
+
+.product-form-card .card-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  padding: 1.5rem 2rem;
+  border-bottom: none;
+}
+
+.product-form-card .card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-form-card .card-body {
+  padding: 2rem;
+}
+
+/* Labels del formulario */
+.product-form .form-label {
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-form .form-label.required::after {
+  content: ' *';
+  color: #dc3545;
+}
+
+/* Inputs del formulario */
+.product-form .form-control,
+.product-form .form-select {
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-form .form-control:focus,
+.product-form .form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(217, 106, 126, 0.25);
+  outline: none;
+}
+
+/* Input group */
+.product-form .input-group-text {
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-primary);
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Textarea */
+.product-form textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Texto de ayuda */
+.product-form .form-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Botones del formulario */
+.product-form .btn {
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-form .btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+}
+
+.product-form .btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), #a8385d);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(217, 106, 126, 0.4);
+}
+
+.product-form .btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.product-form .btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.3);
+}
+
+/* Separador */
+.product-form hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(135deg, rgba(217, 106, 126, 0.3), transparent);
+  margin: 2rem 0;
+}
+
+/* Animación del formulario */
+.product-form-card {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .table-responsive {
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .product-form-card .card-body {
+    padding: 1.5rem 1rem;
+  }
+
+  .product-form .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-form .d-flex {
+    flex-direction: column-reverse;
+  }
+}
+
+/* Forzar Raleway en todos los elementos */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+a,
+button,
+input,
+select,
+textarea,
+label,
+.btn,
+.badge,
+.breadcrumb,
+.card {
+  font-family: 'Raleway', sans-serif !important;
+}

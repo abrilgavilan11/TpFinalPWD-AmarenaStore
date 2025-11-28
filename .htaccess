@@ -1,0 +1,28 @@
+RewriteEngine On
+RewriteBase /amarena/
+
+# Permitir acceso directo a archivos y directorios existentes
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Evitar reescribir si ya está en /public/
+RewriteCond %{REQUEST_URI} !^/amarena/public/
+
+# Redirigir todo a public/index.php
+RewriteRule ^(.*)$ public/index.php/$1 [QSA,L]
+
+# Proteger carpetas y archivos sensibles
+<FilesMatch "^(composer\.(json|lock)|\.env|\.git|database\.sql|README\.md)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Denegar acceso directo a carpetas sensibles
+<IfModule mod_rewrite.c>
+    RewriteRule ^app/ - [F,L]
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^vendor/ - [F,L]
+</IfModule>

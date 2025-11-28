@@ -1,0 +1,168 @@
+/* ===============================
+   ABOUT PAGE - ESTILOS ESPECÍFICOS
+   =============================== */
+
+.about-page {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--color-light) 0%, white 100%);
+  min-height: 80vh;
+}
+
+.about-page__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-page__header {
+  text-align: center;
+  margin-bottom: 80px;
+  animation: slideUp 0.6s ease-out;
+}
+
+.about-page__header h1 {
+  font-size: 3.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 15px;
+  font-weight: 800;
+}
+
+.about-page__subtitle {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Cambiar layout para usar grid de 3 columnas en desktop */
+.about-page__content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+/* Mejorar el logo con animación */
+.about-page__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / -1;
+  margin-bottom: 20px;
+}
+
+.about-page__logo-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  animation: slideIn 0.6s ease-out 0.2s backwards;
+  transition: transform 0.3s ease;
+}
+
+.about-page__logo-img:hover {
+  transform: scale(1.05);
+}
+
+/* Nueva sección de info con grid */
+.about-page__info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  grid-column: 1 / -1;
+}
+
+/* Mejorar cards con sombras, bordes y transiciones */
+.about-page__card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  border: 3px solid var(--color-pastel);
+  transition: all 0.3s ease;
+  animation: slideUp 0.6s ease-out backwards;
+}
+
+.about-page__card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.about-page__card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.about-page__card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.about-page__card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(217, 106, 126, 0.2);
+  border-color: var(--color-primary);
+}
+
+.about-page__card h2 {
+  font-size: 1.8rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 0;
+  font-weight: 800;
+}
+
+.about-page__card h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  margin-bottom: 15px;
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.about-page__card p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  text-align: justify;
+}
+
+.about-page__card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-page__card ul li {
+  font-size: 1.1rem;
+  padding: 12px 0;
+  padding-left: 35px;
+  position: relative;
+  color: var(--color-text);
+  transition: transform 0.2s ease;
+}
+
+.about-page__card ul li:hover {
+  transform: translateX(5px);
+}
+
+.about-page__card ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .about-page__content {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-page__info {
+    grid-template-columns: 1fr;
+  }
+
+  .about-page__logo {
+    grid-column: 1;
+  }
+  
+  .about-page__header h1 {
+    font-size: 2.5rem;
+  }
+}

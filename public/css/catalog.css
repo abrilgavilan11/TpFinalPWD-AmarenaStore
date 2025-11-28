@@ -1,0 +1,433 @@
+/* ===============================
+   CATALOG PAGE - ESTILOS ESPECÍFICOS
+   =============================== */
+
+.catalog {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--color-light), white);
+  min-height: 100vh;
+}
+
+.catalog__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.catalog__title {
+  text-align: center;
+  font-size: 3rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 40px;
+  font-weight: 900; /* Raleway Black */
+  font-family: 'Raleway', sans-serif;
+}
+
+.catalog__controls {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(217, 106, 126, 0.1);
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.catalog__search-form {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+}
+
+.catalog__search-input {
+  flex-grow: 1;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-right: none;
+  border-radius: 30px 0 0 30px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.catalog__search-input:focus {
+  border-color: var(--color-primary);
+}
+
+.catalog__search-btn {
+  padding: 12px 25px;
+  border: none;
+  background: var(--color-primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0 30px 30px 0;
+  transition: background-color 0.3s ease;
+}
+
+.catalog__search-btn:hover {
+  background: var(--color-primary-dark);
+}
+
+.catalog__filters {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters__label {
+  font-weight: 600; /* Raleway SemiBold */
+  color: var(--color-text);
+  font-family: 'Raleway', sans-serif;
+}
+
+.filters__options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 18px;
+  border: 2px solid var(--color-pastel);
+  border-radius: 20px;
+  text-decoration: none;
+  color: var(--color-primary-dark);
+  font-weight: 500; /* Raleway Medium */
+  transition: all 0.3s ease;
+  font-family: 'Raleway', sans-serif;
+}
+
+.filter-btn:hover {
+  background: var(--color-pastel);
+  border-color: var(--color-primary);
+}
+
+.filter-btn.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.catalog__empty {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.3rem;
+  color: var(--color-text);
+}
+
+.product-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(217, 106, 126, 0.15);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(217, 106, 126, 0.25);
+  border-color: var(--color-pastel);
+}
+
+.product-card:hover::before {
+  opacity: 1;
+}
+
+.product-card__image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  position: relative;
+  background: #f8f9fa;
+}
+
+.product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card__image img {
+  transform: scale(1.05);
+}
+
+.product-card__info {
+  padding: 25px 20px;
+}
+
+.product-card__title {
+  font-size: 1.4rem;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  font-weight: 600; /* Raleway SemiBold */
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-card__price {
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  font-weight: 700; /* Raleway Bold */
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-card__sizes {
+  margin-bottom: 20px;
+}
+
+.sizes-label {
+  display: block;
+  color: var(--color-text);
+  font-weight: 500; /* Raleway Medium */
+  margin-bottom: 10px;
+  font-size: 1rem;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+}
+
+.sizes-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.size-btn {
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 700;
+  min-width: 45px;
+}
+
+.size-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-light);
+  transform: translateY(-2px);
+}
+
+.size-btn.selected {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  border-color: var(--color-primary-dark);
+  transform: scale(1.1);
+}
+
+.product-card__colors {
+  margin-bottom: 25px;
+}
+
+.colors-label {
+  display: block;
+  color: var(--color-text);
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.colors-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.color-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 3px solid #e0e0e0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.color-btn:hover {
+  border-color: var(--color-primary);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(217, 106, 126, 0.3);
+}
+
+.color-btn.selected {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 3px var(--color-primary);
+}
+
+.color-btn.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #333;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.product-card__add-btn {
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600; /* Raleway SemiBold */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-card__add-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.product-card__add-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(217, 106, 126, 0.4);
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
+}
+
+.product-card__add-btn:hover::before {
+  left: 100%;
+}
+
+.product-card__add-btn.added {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  transform: translateY(-3px);
+}
+
+.notification {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+  z-index: 1000;
+  font-weight: 700;
+  font-size: 1rem;
+  max-width: 350px;
+  animation: slideInRight 0.4s ease;
+}
+
+.notification--warning {
+  background: linear-gradient(135deg, #ff9800, #f57c00);
+  box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
+}
+
+.notification--error {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  box-shadow: 0 10px 25px rgba(244, 67, 54, 0.4);
+}
+
+/* Estilos para el botón de talle/color activo */
+.product-card__sizes .size-btn.active,
+.product-card__colors .color-btn.active {
+  border-color: #e91e63; /* Color primario */
+  border-width: 2px;
+  box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
+  transform: scale(1.1);
+}
+
+/* Estilos para las notificaciones Toast */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  padding: 15px 25px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1050;
+}
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+}
+.toast-notification.success {
+  background-color: #28a745; /* Verde éxito */
+}
+.toast-notification.error {
+  background-color: #dc3545; /* Rojo error */
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

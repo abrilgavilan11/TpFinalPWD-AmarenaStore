@@ -1,0 +1,17 @@
+{
+  "name": "amarena/store",
+  "description": "Amarena Store - E-commerce with QR Payment System",
+  "type": "project",
+  "require": {
+    "php": ">=8.1",
+    "endroid/qr-code": "^5.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}

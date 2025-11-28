@@ -1,0 +1,352 @@
+/*
+ * Estilos para el Panel de Administración de Amarena Store
+ */
+
+/* Layout Principal del Panel */
+.admin-page {
+  width: 100%;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fef4f8 0%, #f8e8f0 100%);
+  min-height: 80vh;
+}
+
+.admin-container {
+  display: flex;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(217, 106, 126, 0.15);
+  overflow: hidden;
+}
+
+/* Barra Lateral (Sidebar) - Cambio a gradiente de rosa */
+.admin-sidebar {
+  flex: 0 0 240px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-dark),
+    var(--color-primary)
+  );
+  color: #ecf0f1;
+  padding: 1.5rem;
+  box-shadow: 2px 0 10px rgba(217, 106, 126, 0.1);
+}
+
+.admin-sidebar h2 {
+  font-family: var(--font-primary);
+  font-size: 1.6rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: var(--color-white);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 1rem;
+}
+
+.admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-sidebar nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 1rem 1rem;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  border-left: 3px solid transparent;
+}
+
+.admin-sidebar nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  border-left-color: var(--color-light);
+  transform: translateX(5px);
+}
+
+.admin-sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--color-white);
+  font-weight: bold;
+  border-left-color: var(--color-light);
+}
+
+/* Contenido Principal */
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.admin-content h1 {
+  font-family: var(--font-primary);
+  margin-top: 0;
+  color: var(--color-primary-dark);
+  border-bottom: 3px solid var(--color-pastel);
+  padding-bottom: 1rem;
+  font-weight: 800;
+}
+
+.admin-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Botones de Acciones */
+.admin-actions {
+  margin: 2rem 0;
+}
+
+/* Mejorar tabla con colores rosados y mejor estilo */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(217, 106, 126, 0.1);
+}
+
+.admin-table thead {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 1rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--color-light);
+}
+
+.admin-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #fef4f8;
+  transform: scale(1.01);
+  box-shadow: inset 0 0 10px rgba(217, 106, 126, 0.1);
+}
+
+.admin-table .actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.admin-table .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+}
+
+.admin-table .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones con colores rosados */
+.btn.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-white-dark)
+  );
+  color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(217, 106, 126, 0.3);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.btn.btn-primary:hover {
+  box-shadow: 0 6px 20px rgba(217, 106, 126, 0.4);
+  color: var(--color-white);
+}
+
+.btn.btn-secondary {
+  background: var(--color-accent);
+  color: var(--color-white);
+  box-shadow: 0 4px 15px rgba(217, 106, 126, 0.3);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.btn.btn-secondary:hover {
+  background-color: var(--color-white);
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary-dark);
+}
+
+.btn.btn-danger {
+  background: linear-gradient(135deg, #ff6b7a, #e74c3c);
+  color: white;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn.btn-danger:hover {
+  box-shadow: 0 6px 16px rgba(231, 76, 60, 0.4);
+}
+
+.btn.btn-info {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.btn.btn-info:hover {
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+}
+
+.btn.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+/* Mejorar badges con colores rosa */
+.badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.badge.bg-success {
+  background: linear-gradient(135deg, #27ae60, #229954) !important;
+  color: white;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+  color: white;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #ff6b7a, #e74c3c) !important;
+  color: white;
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(217, 106, 126, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-dark)
+  );
+  color: white;
+  border: none;
+  padding: 1.5rem;
+  font-weight: 800;
+}
+
+.card-body {
+  padding: 1.5rem;
+  background-color: #fafafa;
+}
+
+.card-footer {
+  background-color: white;
+  border-top: 2px solid var(--color-light);
+}
+
+.breadcrumb {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--color-primary);
+}
+
+.breadcrumb-item.active {
+  color: var(--color-primary-dark);
+  font-weight: 800;
+}
+
+.breadcrumb-item a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--color-accent);
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.me-1 {
+  margin-right: 0.5rem;
+}
+
+.table-dark {
+  background-color: var(--color-primary) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: rgba(242, 182, 182, 0.1);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(217, 106, 126, 0.15);
+}
+
+/* Clase personalizada para el encabezado de la tabla de productos */
+.thead-custom {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 800;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    flex: 0 0 auto;
+  }
+
+  .admin-table {
+    font-size: 0.85rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.7rem;
+  }
+
+  .admin-table .actions {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
