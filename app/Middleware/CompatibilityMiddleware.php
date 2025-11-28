@@ -151,7 +151,6 @@ class CompatibilityMiddleware
      */
     public static function generateCompatibleLink($route, $params = [])
     {
-        // Mapeo inverso: nuevas rutas a antiguas para compatibilidad
         $reverseMapping = [
             '/management' => '/admin',
             '/management/products' => '/admin/productos',
@@ -163,7 +162,7 @@ class CompatibilityMiddleware
         
         // Si existe mapeo inverso, usar la ruta nueva
         if (isset($reverseMapping[$route])) {
-            $finalRoute = $route; // Usar la nueva ruta
+            $finalRoute = $route;
         }
 
         // Reemplazar parámetros

@@ -4,6 +4,7 @@ namespace App\Middleware;
 
 use App\Utils\PermissionManager;
 use App\Utils\Session;
+use App\Utils\Auth;
 
 class PermissionMiddleware
 {

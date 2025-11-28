@@ -1,15 +1,12 @@
 <?php
 
-return; // Detener la ejecución de este script obsoleto para evitar errores.
-
-// Este archivo debe estar ELIMINADO, pero lo dejamos por compatibilidad
-// Todos los nuevos modelos deben usar app/Utils/Database.php
+return;
 
 // Parámetros para la conexión a la base de datos
 $servidor = "localhost";
 $usuario_db = "root";
 $password_db = "";
-$nombre_db = "amarena_store"; // Corregido: era "bdcarritocompras", ahora es "amarena_store"
+$nombre_db = "amarena_store"; 
 
 // Crear una nueva conexión a la base de datos usando la extensión MySQLi
 $conexion = new mysqli($servidor, $usuario_db, $password_db, $nombre_db);

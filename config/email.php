@@ -1,21 +1,6 @@
 <?php
 /**
  * Configuración de Email para Amarena Store
- * 
- * Instrucciones de configuración:
- * 
- * 1. PARA GMAIL:
- *    - Habilita la autenticación de 2 factores en tu cuenta Gmail
- *    - Genera una "Contraseña de aplicación" en tu cuenta Google
- *    - Usa esa contraseña en SMTP_PASSWORD (no tu contraseña normal)
- * 
- * 2. PARA OTROS PROVEEDORES:
- *    - Consulta la documentación de tu proveedor de email
- *    - Cambia los valores según corresponda
- * 
- * 3. PARA DESARROLLO LOCAL (XAMPP):
- *    - Puedes usar servicios como MailHog o configurar sendmail
- *    - O usar servicios externos como SendGrid, Mailgun, etc.
  */
 
 return [
@@ -24,9 +9,9 @@ return [
         'enabled' => true,
         'host' => 'smtp.gmail.com',
         'port' => 587,
-        'encryption' => 'tls', // 'tls' o 'ssl'
+        'encryption' => 'tls', 
         'username' => 'amarenastore2244@gmail.com',
-        'password' => '', // ⚠️ IMPORTANTE: Usar contraseña de aplicación para Gmail
+        'password' => '',
         'timeout' => 30
     ],
     

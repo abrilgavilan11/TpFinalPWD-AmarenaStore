@@ -170,9 +170,6 @@ return [
         '/management/orders/statistics/{period}' => 'ManagementController@ordersStatistics',
         '/management/orders/search' => 'ManagementController@searchOrders',
 
-        // Pagos
-        // '/pago/iniciar' => 'PaymentController@initiate',
-        // '/pago/webhook' => 'PaymentController@webhook',
     ],
 
     // Métodos DELETE

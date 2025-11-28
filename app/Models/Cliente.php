@@ -1,5 +1,13 @@
 <?php
-// Modelo Cliente para gestión de clientes y compras
+namespace App\Models;
+
+use \PDO;
+
+require_once __DIR__ . '/BaseModel.php';
+require_once __DIR__ . '/Orden.php';
+require_once __DIR__ . '/Usuario.php';
+
+
 class Cliente extends BaseModel {
     // Obtener todos los clientes con cantidad de compras
     public function getAllWithCompras() {

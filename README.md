@@ -1,114 +1,341 @@
-# Presentación — Proyecto Amarena
+## 📋 **Introducción**
 
-Buenos días. En esta presentación voy a exponer el proyecto Amarena: una tienda online construida con PHP siguiendo un patrón MVC, utilizando MySQL como base de datos y desplegada típicamente sobre XAMPP.
+Amarena es una **tienda online completa** construida con **PHP bajo patrón MVC**, MySQL y desplegada en XAMPP. Implementa un sistema robusto de **autenticación, autorización y gestión de órdenes** con trazabilidad completa.
 
-Mi objetivo es mostrar cómo está organizada la aplicación, qué funcionalidades ofrece para los roles de Usuario y Admin, y demostrar cómo se cumplen los criterios de validación, autorización, separación de responsabilidades y registro de estados en todo el flujo de compra.
+---
 
-**Estructura del proyecto (resumen rápido)**
+## 🏗️ **Arquitectura MVC**
 
-- `app/Controllers/`: controladores que coordinan las peticiones y validaciones.
-- `app/Models/`: modelos que encapsulan lógica de negocio y acceso a datos (`Product`, `Order`, `OrderStatus`, `User`).
-- `app/Views/vistas/`: vistas organizadas por áreas (`tienda`, `admin`, `checkout`).
-- `app/Middleware/`: middleware para autenticación y control de permisos.
-- `app/Utils/`: utilidades (sesión, envío de email, helpers).
-- `public/`: activos públicos y punto de entrada para el servidor web.
+Tu proyecto sigue el patrón **Model-View-Controller** de forma disciplinada:
 
-Ahora describo las funcionalidades más importantes, pensadas como un guion que leeré en voz alta en la demo.
+### **Controllers** (Controllers)
+- **Orquestan** las peticiones HTTP
+- **Validan** permisos y entrada
+- **Delegan** la lógica en modelos
+- Ejemplos: `OrderManagementController`, `ManagementController`
 
-**Funcionalidades para el rol Usuario (cliente)**
+### **Models** (Models)
+- **Encapsulan** acceso a base de datos
+- **Ejecutan** transacciones y lógica de negocio
+- Clases como `Order`, `Product`, `OrderStatus`, `Permission`
 
-1. Navegación por catálogo: el cliente puede listar productos, aplicar filtros por categoría y buscar por texto.
-2. Carrito y resumen: el cliente agrega productos al carrito, revisa cantidades y subtotales; el total se calcula dinámicamente.
-3. Checkout por pasos: se solicitan los datos del cliente, se valida stock, se muestra resumen y se genera un QR/token para pago.
-4. Confirmación de pago: al confirmar el pago (simulado), el sistema marca la orden como pagada y actualiza el historial de estados.
-5. Historial de órdenes: el cliente puede ver sus órdenes y el estado actual.
+### **Views** (vistas)
+- **Presentan** datos al usuario
+- Organizadas por área: `tienda/`, `admin/`, `checkout/`
 
-**Funcionalidades para el rol Admin (gestión)**
+### **Punto de Entrada** (`public/index.php`)
+Actúa como **Front Controller** centralizando todo el flujo:
+1. Procesa la URI y método HTTP
+2. Aplica middleware de compatibilidad y permisos
+3. Busca la ruta en routes.php
+4. Instancia el controlador y ejecuta la acción
 
-1. Panel de órdenes: listado de órdenes con estado actual y búsqueda.
-2. Detalle de orden: vista completa con items, totales y el historial cronológico de estados (fechas de inicio y fin).
-3. Gestión de productos: crear, editar, publicar/despublicar y controlar stock.
-4. Cambio de estados: el administrador puede cambiar estados de la orden; cada cambio queda registrado en la tabla `compraestado`.
+---
 
-A continuación, lector, explico y demuestro cómo el proyecto cumple los criterios de calidad solicitados. Lee esto tal como lo diría en la exposición.
+## 🔐 **Sistema de Roles y Permisos**
 
-**1) Proceso de validación: control de autenticación**
+Tu aplicación implementa un **sistema híbrido**: compatibilidad con roles heredados + permisos granulares.
 
-En Amarena, todas las rutas y controladores que pertenecen al área administrativa invocan un middleware de permisos. En la práctica esto significa que antes de ejecutar la lógica de un controlador comprobamos que exista una sesión válida y que el usuario esté autenticado. Por ejemplo, `OrderManagementController::index()` llama a `PermissionMiddleware::requireOrderManagement()`; si la comprobación falla, el acceso se niega y se redirige al login.
+### **Roles Disponibles**
+- **Administrador**: acceso total a gestión
+- **Cliente**: navegación y compra
 
-Lectura en voz: "Antes de mostrar listas administrativas validamos la sesión y el rol. Si no hay sesión válida, no se continúa."
+### **Flujo de Autenticación** (`app/Utils/Auth.php`)
 
-**2) Proceso de validación: control de permisos por recurso**
-
-Además de la autenticación, cada recurso sensible está protegido por una autorización explícita. El middleware no sólo verifica que el usuario esté logueado sino que tenga el permiso requerido para la acción (por ejemplo: gestión de órdenes). Esto evita accesos directos por URL y asegura que las transiciones de estado solo las ejecuten usuarios con privilegios.
-
-Lectura en voz: "Cada endpoint sensible valida el permiso específico antes de ejecutar la acción."
-
-**3) Las acciones conocen el proceso — separación de responsabilidades**
-
-La arquitectura sigue la regla: los controladores orquestan, los modelos ejecutan. Las acciones de los controladores se limitan a validar entradas, instanciar el modelo o servicio correspondiente y llamar al método que ejecuta la transacción. Por ejemplo, `CheckoutFlowController` prepara los datos y delega en `Order::create()` y en `OrderStatus` para registrar estados.
-
-Lectura en voz: "Los controladores no contienen la lógica de negocio; esta está centralizada en los modelos."
-
-**4) Ejecución completa de un proceso de compra**
-
-Describo el flujo en voz:
-
-- El cliente agrega productos al carrito y solicita checkout.
-- El sistema valida stock y datos del cliente.
-- Se crea la orden (registro en `compra` y `compraitem`) y se añade un estado inicial `iniciada` en `compraestado`.
-- Se genera un QR/token para el pago y se espera la confirmación.
-- Al recibir la confirmación, `Order::markAsPaid()` cierra el estado anterior (pone `cefechafin`) y crea una nueva fila `aceptada` con `cefechaini`.
-
-Lectura en voz: "Este flujo garantiza integridad y trazabilidad desde la creación hasta la confirmación del pago."
-
-**5) Registro correcto de cambios de estado**
-
-Cada transición se registra en `compraestado` con `cefechaini` y, cuando corresponde, se rellena `cefechafin` del estado anterior. Esto permite reconstruir el historial cronológico completo de una orden.
-
-Lectura en voz: "El historial está disponible en la vista administrativa y puede consultarse con una simple consulta SQL."
-
-**6) Estructura independiente de roles y menú dinámico**
-
-La aplicación está diseñada para que los modelos sean independientes del rol; la interfaz (vistas y menú) se adapta según los permisos del usuario. El menú se genera dinámicamente consultando la sesión y mostrando sólo los enlaces permitidos.
-
-Lectura en voz: "Agregar o modificar roles no requiere cambiar la capa de datos."
-
-**Comprobaciones y comandos que utilizaré en la demo (leer y ejecutar)**
-
-1. Ejecutar localmente (XAMPP): asegúrate de que `amarena` esté en `C:/xampp/htdocs/`, inicia Apache y MySQL desde el panel de XAMPP y abre `http://localhost/amarena/`.
-
-2. Alternativa de desarrollo (servidor embebido PHP):
-
-```bash
-cd C:/xampp/htdocs/amarena
-php -S localhost:8000 -t public
+```php
+// El usuario inicia sesión
+Auth::isLoggedIn()          // Verifica sesión
+Auth::getUserRole()         // Obtiene 'Administrador' o 'Cliente'
+Auth::isAdmin()             // true si idrol = 1
 ```
 
-3. Consulta SQL para mostrar el historial de una orden (leer en voz y luego ejecutar):
+### **Control de Permisos** (`app/Utils/PermissionManager.php`)
 
+Cada acción sensible requiere un permiso específico:
+
+```
+PermissionManager::hasPermission('manage.orders')
+PermissionManager::hasPermission('manage.products')
+PermissionManager::hasPermission('view.own.orders')
+```
+
+### **Middleware de Permisos** (`app/Middleware/PermissionMiddleware.php`)
+
+Los controladores validan permisos antes de ejecutar:
+
+````php
+public function index()
+{
+    PermissionMiddleware::requireOrderManagement();
+    // Solo llega aquí si tiene permiso
+}
+````
+
+---
+
+## 🔄 **Flujo de Compatibilidad de Rutas** (`app/Middleware/CompatibilityMiddleware.php`)
+
+Tu aplicación migró de rutas antiguas (`/admin/productos`) a nuevas (`/management/products`). El middleware maneja esto automáticamente:
+
+**Mapeo automático:**
+```
+/admin/productos          → /management/products
+/admin/categorias/crear   → /management/categories/store
+/admin/ordenes            → /management/orders
+```
+
+**Beneficio**: URLs antiguas siguen funcionando con redirección 301 permanente.
+
+---
+
+## 🛒 **Flujo Completo de Compra**
+
+### **1️⃣ Navegación del Cliente**
+- Visualiza catálogo (`/catalog`)
+- Filtra por categoría
+- Busca productos
+
+### **2️⃣ Carrito**
+- Agrega productos (`/cart`)
+- Sistema gestiona items en sesión
+- Calcula subtotal dinámicamente
+
+### **3️⃣ Checkout** (`CheckoutFlowController`)
+```
+Paso 1: Datos del cliente
+   ↓
+Paso 2: Validar stock
+   ↓
+Paso 3: Resumen de orden
+   ↓
+Paso 4: Generar QR/token de pago
+   ↓
+Paso 5: Simular confirmación de pago
+```
+
+### **4️⃣ Creación de Orden** (`app/Models/Order`)
+
+```
+INSERT en tabla 'compra' (cliente_id, total, fecha)
+   ↓
+INSERT en 'compraitem' (compra_id, producto_id, cantidad, precio)
+   ↓
+INSERT en 'compraestado' (compra_id, estado='iniciada', fecha_inicio)
+```
+
+### **5️⃣ Confirmación de Pago**
+
+```
+Order::markAsPaid()
+   ↓
+CLOSE estado anterior: UPDATE compraestado SET fecha_fin = NOW()
+   ↓
+CREATE nuevo estado: INSERT compraestado (estado='aceptada', fecha_inicio)
+```
+
+**Resultado**: Trazabilidad completa. Cada cambio de estado queda registrado con timestamp.
+
+---
+
+## 📊 **Gestión Administrativa**
+
+### **Dashboard de Órdenes** (`ManagementController`)
+
+```php
+// El admin ve:
+- Total de órdenes
+- Órdenes por estado (iniciada, aceptada, enviada, entregada)
+- Productos con stock bajo
+- Última actualización en tiempo real
+```
+
+### **Panel de Órdenes** (`OrderManagementController`)
+
+El admin puede:
+1. **Listar** todas las órdenes
+2. **Ver detalles**: items, cliente, direcciones, historial de estados
+3. **Cambiar estado**: transiciones válidas según el estado actual
+4. **Ver historial**: cada cambio de estado con fecha/hora exacta
+
+### **Transiciones de Estado Validadas** (`app/Models/OrderStatus`)
+
+```
+iniciada → aceptada → procesada → enviada → entregada
+           cancelada
+```
+
+Solo permite transiciones lógicas. Ej: no puede pasar de "entregada" a "cancelada".
+
+---
+
+## 🗄️ **Estructura de Base de Datos**
+
+### **Tabla: `usuarios`**
 ```sql
-SELECT ce.*, cet.cetdescripcion, cet.cetdetalle
-FROM compraestado ce
-JOIN compraestadotipo cet ON ce.idcompraestadotipo = cet.idcompraestadotipo
-WHERE ce.idcompra = 123
-ORDER BY ce.cefechaini DESC;
+- idusuario (PK)
+- nombre, email, contraseña
+- idrol (FK) → roles
+- fecha_creacion
 ```
 
-Reemplazar `123` por el `idcompra` de la orden que vayamos a mostrar.
+### **Tabla: `roles`**
+```sql
+- idrol (PK)
+- nombre (Administrador, Cliente)
+```
 
-**Diagrama de secuencia**
+### **Tabla: `permisos`**
+```sql
+- idpermiso (PK)
+- codigo (manage.orders, manage.products, etc)
+- descripcion
+```
 
-He incluido un diagrama de secuencia en `docs/sequence.puml` que muestra la interacción entre `CheckoutFlowController`, `Order` y `OrderStatus` durante la compra y la confirmación de pago. En la demo lo abriré para repasar las llamadas y los puntos donde se guardan los estados.
+### **Tabla: `rol_permiso`** (relación many-to-many)
+```sql
+- idrol (FK)
+- idpermiso (FK)
+```
 
-**Archivos que voy a abrir en la demo (mención para lectura en voz)**
+### **Tabla: `compra` (Órdenes)**
+```sql
+- idcompra (PK)
+- idusuario (FK)
+- total, estado_actual
+- fecha_creacion
+```
 
-- `app/Controllers/CheckoutFlowController.php` — para seguir el flujo de checkout.
-- `app/Models/Order.php` — para explicar `create`, `getStatusHistory` y `markAsPaid`.
-- `app/Views/vistas/admin/order_detail.php` — para mostrar el historial con `cefechaini` y `cefechafin`.
+### **Tabla: `compraitem` (Detalles)**
+```sql
+- idcompraitem (PK)
+- idcompra (FK)
+- idproducto (FK)
+- cantidad, precio_unitario
+```
 
-**Cierre (últimas líneas para la exposición)**
+### **Tabla: `compraestado` (Historial)**
+```sql
+- idcompraestado (PK)
+- idcompra (FK)
+- idcompraestadotipo (FK) → tipo de estado
+- fecha_inicio, fecha_fin
+```
 
-Con esto concluye la presentación técnica de Amarena. Hemos recorrido la estructura del proyecto, mostrado las funcionalidades clave para cada rol y verificado que los criterios de autenticación, autorización, separación de responsabilidades y trazabilidad de estados están implementados y son verificables.
+**Ventaja**: Historial inmutable. Cada estado tiene fecha de inicio y fin, permitiendo auditoría completa.
 
-Gracias. Ahora procedo a abrir los archivos en el entorno para la demostración en vivo.
+---
+
+## 🔒 **Seguridad Implementada**
+
+### **1. Autenticación**
+- ✅ Validación de sesión en cada petición
+- ✅ Redireccionamiento al login si no está autenticado
+- ✅ Almacenamiento seguro de contraseña (hash)
+
+### **2. Autorización**
+- ✅ Middleware valida permisos antes de acceder a recursos
+- ✅ No se pueden acceder a rutas administrativas sin permisos
+- ✅ Los usuarios cliente no ven panel admin
+
+### **3. Validación de Datos**
+- ✅ Stock se valida antes de crear orden
+- ✅ Totales se recalculan en servidor (no confía en cliente)
+- ✅ Solo cambios de estado válidos se permiten
+
+### **4. Integridad de Datos**
+- ✅ Transacciones en creación de órdenes
+- ✅ Historial de estados inmutable
+- ✅ FK garantizan consistencia
+
+---
+
+## 🚀 **Ejemplos de Flujos Clave**
+
+### **Ejemplo 1: Admin cambia estado de orden**
+
+```
+GET /management/orders/123
+   ↓
+OrderManagementController::show(123)
+   ↓
+PermissionMiddleware::requireOrderManagement()  ← Valida permiso
+   ↓
+OrderModel::getOrderWithUserDetails(123)
+OrderModel::getValidTransitions()
+   ↓
+Vista muestra botones solo con transiciones válidas
+   ↓
+POST /management/orders/123/update-status
+   ↓
+PermissionMiddleware::requireOrderManagement()
+OrderStatus::createStatusRecord($orderId, 'enviada')
+   ↓
+Email enviado automáticamente al cliente
+   ↓
+Historial actualizado en compraestado
+```
+
+### **Ejemplo 2: Cliente compra**
+
+```
+POST /checkout/process
+   ↓
+CheckoutFlowController::process()
+   ↓
+PermissionMiddleware::requirePurchaseAccess()  ← Solo clientes autenticados
+   ↓
+Valida stock de cada item
+Valida datos del cliente
+   ↓
+Order::create() → Crea compra + items + estado inicial
+   ↓
+OrderStatus::setInitialStatus('iniciada')
+   ↓
+Genera QR para pago
+   ↓
+POST /checkout/confirm-payment
+   ↓
+Order::markAsPaid()  ← Cierra estado anterior, crea 'aceptada'
+   ↓
+Email de confirmación
+   ↓
+Redirige a /my-orders
+```
+
+---
+
+## 📈 **Dinámismo con Base de Datos**
+
+Tu aplicación es completamente **dinámica**:
+
+- ✅ **Catálogo**: Productos se cargan de BD, no están hardcodeados
+- ✅ **Permisos**: Se validan contra tabla `permisos`, no en código
+- ✅ **Estados**: Las transiciones válidas se obtienen de BD
+- ✅ **Historial**: Cada acción del admin queda registrada
+- ✅ **Stock**: Se valida en tiempo real contra BD
+- ✅ **Emails**: Se envían dinámicamente según estado
+
+---
+
+## 📝 **Criterios de Calidad Cumplidos**
+
+| Criterio                              | Estado | Implementación |
+|---------------------------------------|--------|---------------------------------------|
+| **Validación de autenticación**       |   ✅   | `PermissionMiddleware` valida sesión |
+| **Autorización explícita**            |   ✅   | `PermissionManager` verifica permisos específicos |
+| **Separación de responsabilidades**   |   ✅   | Controladores orquestan, modelos ejecutan, vistas presentan |
+| **Registro de cambios de estado**     |   ✅   | Tabla `compraestado` con timestamp inicio/fin |
+| **Integridad transaccional**          |   ✅   | Órdenes se crean atómicamente con items y estado |
+| **Trazabilidad completa**             |   ✅   | Historial inmutable de estados con fechas exactas |
+
+---
+
+## 🎯 **Conclusión**
+
+Amarena es una aplicación **profesional y robusta** que demuestra:
+- ✅ Arquitectura MVC clara y mantenible
+- ✅ Sistema de permisos granular y flexible
+- ✅ Flujo de compra completo y trazable
+- ✅ Seguridad en múltiples capas
+- ✅ Base de datos normalizada e íntegra
+- ✅ Código escalable y reutilizable
